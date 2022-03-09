@@ -7,7 +7,6 @@ function* fetchGallerySaga(action) {
         // GET request from the backend
         const response = yield axios.get('/gallery');
         console.log(`This is what the server sent: `, response.data);
-
         // DISPATCH (PUT) the GALLERY to redux using existing SET_GALLERY
         yield put({ type: 'SET_GALLERY', payload: response.data });
     } catch (error) {
@@ -21,7 +20,6 @@ function* addGallerySaga(action) {
     try {
         // POST the new Gallery to the backend
         yield axios.post('/gallery', action.payload);
-
         // This will wake up the fetchGALLERYaga to refresh the store
         yield put({ type: 'FETCH_GALLERY' });
     } catch (error) {

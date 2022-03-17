@@ -7,8 +7,9 @@ const router = express.Router();
  */
  router.get('/', (req, res) => {
     // GET route code here
-    let queryText = 'SELECT * FROM "video" ORDER BY "id";';
+    let queryText = 'SELECT * FROM "video" ORDER BY "id" DESC;';
     pool.query(queryText).then(result => {
+      console.log("The videos are here ", result.rows);
       // Sends back the results in an object
       res.send(result.rows);
     })

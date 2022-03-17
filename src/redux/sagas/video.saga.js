@@ -2,14 +2,17 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from 'axios';
 
-function* fetchVideoSaga(action) {
+function* fetchVideoSaga() {
     try {
         // GET request from the backend
-        const response = yield axios.get('/video');
+        const response = yield axios.get("/api/videos");
         console.log(`This is what the server sent: `, response.data);
 
         // DISPATCH (PUT) the video to redux using existing SET_VIDEOS
-        yield put({ type: 'SET_VIDEOS', payload: response.data });
+        yield put({
+        type: "SET_VIDEOS", 
+        payload: response.data 
+        });
     } catch (error) {
         console.log(`ERROR fetching VIDEOS `, error);
     }
@@ -20,7 +23,7 @@ function* addVideoSaga(action) {
     // note: action.payload should be: { Video: 'Watermelon' }
     try {
         // POST the new Video to the backend
-        yield axios.post('/video', action.payload);
+        yield axios.post('/api/videos', action.payload);
 
         // This will wake up the fetchVidesaga to refresh the store
         yield put({ type: 'FETCH_VIDEOS' });
@@ -36,7 +39,7 @@ function* removeVideoSaga(action) {
     // the action's payload, so we can grab it here
     try {
         const videoId = action.payload;
-        yield axios.delete(`/video/${videoId}`);
+        yield axios.delete(`/api/videos/${videoId}`);
         yield put({ type: 'FETCH_VIDEOS' });
     } catch (error) {
         console.log(`Error DELETING video`, error);

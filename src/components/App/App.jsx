@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddVideo from '../AddVideo/AddVideo';
 
 import './App.css';
 
@@ -27,9 +28,14 @@ function App() {
 
   const user = useSelector(store => store.user);
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_USER' });
+  // }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({ type: "FETCH_VIDEOS" });
+  //   dispatch({ type: "FETCH_ALL_USERS" });
+  //   // dispatch({ type: "FETCH_REFERENCES" });
+  // }, []);
 
   return (
     <Router>
@@ -81,6 +87,7 @@ function App() {
               <LoginPage />
             }
           </Route>
+          
 
           <Route
             exact

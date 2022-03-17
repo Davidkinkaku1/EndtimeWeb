@@ -31,7 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/contact', contactRouter)
 app.use('/api/gallery', galleryRouter)
 app.use('/api/events', eventsRouter)
-app.use('/api/video', videoRouter)
+app.use('/api/videos', videoRouter)
 
 
 

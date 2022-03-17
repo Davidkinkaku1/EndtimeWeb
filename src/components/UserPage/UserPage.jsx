@@ -23,10 +23,10 @@ function UserPage() {
     <div className="container">
       <di>
         <h2>Welcome, {user.username}!</h2>
-         <p>Your ID is: {user.id}</p>
-         <button>Add A video</button>
-         <button>Add A Picture</button>
-         <button>Add An Event</button>
+         <p>Your ID is: {user.id} you have admin privileges, any changes you make can affect the live version of the site.</p>
+         <button onClick={() =>history.push('/AddVideo')}>Add A video</button> 
+         <button onClick={() =>history.push('/AddImage')}>Add A Picture</button>
+         <button onClick={() =>history.push('/AddEvent')}>Add An Event</button>
       </di> 
       <br/>
       <LogOutButton className="btn" />

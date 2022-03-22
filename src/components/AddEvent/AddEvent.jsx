@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { useState } from "react";
 // This is one of our simplest components
 // this page will be used to upload videos for sermons, special, and worship
 // could even post a youtube video while live on youtube for people to stream through your site.
@@ -39,7 +40,7 @@ const [eventData, setEventData] = useState({
         <input onChange={(event) => setEventData({...eventData, event_title:event.target.value})} placeholder="Title: Preacher/Singer/Song Leader" required></input>
         <label>Link to details or sign Up form</label>
         <input onChange={(event) => setEventData({...eventData, event_details:event.target.value})} placeholder="Link to the video from Youtube" required ></input>
-        <label>Description</label>
+        <label>Small Details on when and Where.</label>
         <input onChange={(event) => setEventData({...eventData, event_location:event.target.value})} placeholder="Special/Worship/Sermon" required></input>
         <button onClick={onSubmit}>Submit</button>
       </form>

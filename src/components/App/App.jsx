@@ -5,7 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -22,20 +22,23 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import AddVideo from '../AddVideo/AddVideo';
 
 import './App.css';
+import AddEvent from '../AddEvent/AddEvent';
 
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
 
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_USER' });
-  // }, [dispatch]);
-  // useEffect(() => {
-  //   dispatch({ type: "FETCH_VIDEOS" });
-  //   dispatch({ type: "FETCH_ALL_USERS" });
-  //   // dispatch({ type: "FETCH_REFERENCES" });
-  // }, []);
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER' });
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch({ type: "FETCH_VIDEOS" });
+    dispatch({ type: "FETCH_ALL_USERS" });
+    dispatch({ type: "FETCH_WORSHIPS_VIDEOS" });
+    dispatch({ type: "FETCH_SPECIALS_VIDEOS" });
+    // dispatch({ type: "FETCH_REFERENCES" });
+  }, []);
 
   return (
     <Router>
@@ -67,6 +70,22 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/newVideo"
+          >
+            <AddVideo />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/newEvent"
+          >
+            <AddEvent />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
@@ -87,8 +106,8 @@ function App() {
               <LoginPage />
             }
           </Route>
+         
           
-
           <Route
             exact
             path="/registration"

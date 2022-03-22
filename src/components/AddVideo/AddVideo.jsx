@@ -2,11 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { useState } from "react";
 // This is one of our simplest components
 // this page will be used to upload videos for sermons, special, and worship
 // could even post a youtube video while live on youtube for people to stream through your site.
 // Needs to add a unique link to this page so nobody spams it and posts random videos ---- MUST
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function AddVideo() {
 //calling the dispatch for the axios calls
@@ -34,15 +38,21 @@ const [videoData, setVideoData] = useState({
 
   return (
     <div className="container">
-      <form onSubmit={onSubmit}>
-        <label>Title of the Sermon/Worship/Special</label>
-        <input onChange={(event) => setVideoData({...videoData, title:event.target.value})} placeholder="Title: Preacher/Singer/Song Leader" required></input>
-        <label>Your video Youtube Link</label>
-        <input onChange={(event) => setVideoData({...videoData, link:event.target.value})} placeholder="Link to the video from Youtube" required ></input>
-        <label>Description</label>
-        <input onChange={(event) => setVideoData({...videoData, description:event.target.value})} placeholder="Special/Worship/Sermon" required></input>
-        <button onClick={onSubmit}>Submit</button>
-      </form>
+     
+      <Box
+      sx={{
+        width: 500,
+        maxWidth: '100%',
+       
+      }}
+    >
+      <TextField fullWidth label="Title " id="fullWidth" onChange={(event) => setVideoData({...videoData, title:event.target.value})} required/>
+      <TextField fullWidth label="Youtube Link " id="fullWidth" onChange={(event) => setVideoData({...videoData, link:event.target.value})} required/>
+      <TextField fullWidth label="Description " id="fullWidth" onChange={(event) => setVideoData({...videoData, description:event.target.value})} required/>
+
+    </Box>
+    <Button onClick={onSubmit} sx={{ border: 'grey' }}>Save</Button>
+    
     </div>
   );
 }

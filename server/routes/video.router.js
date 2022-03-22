@@ -3,11 +3,11 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route template all the videos 
  */
  router.get('/', (req, res) => {
     // GET route code here
-    let queryText = 'SELECT * FROM "video" ORDER BY "id" DESC;';
+    let queryText = 'SELECT * FROM "video" ORDER BY "id" DESC LIMIT 10;';
     pool.query(queryText).then(result => {
       console.log("The videos are here ", result.rows);
       // Sends back the results in an object
@@ -18,7 +18,49 @@ const router = express.Router();
       res.sendStatus(500);
     });
   });
-  
+  /**
+ * GET route for all the Special Song
+ */
+ router.get('/specials', (req, res) => {
+  // GET route code here
+  let queryText = `Select * from "video" where "description" like '%pecial' order by "id" Desc;`;
+  pool.query(queryText).then(result => {
+    console.log("The videos are here ", result.rows);
+    // Sends back the results in an object
+    res.send(result.rows);
+  })
+  .catch(error => {
+    console.log('error getting contacts informations', error);
+    res.sendStatus(500);
+  });
+});
+router.get('/sermons', (req, res) => {
+  // GET route code here
+  let queryText = `Select * from "video" where "description" like '%ermon' order by "id" Desc;`;
+  pool.query(queryText).then(result => {
+    console.log("The videos are here ", result.rows);
+    // Sends back the results in an object
+    res.send(result.rows);
+  })
+  .catch(error => {
+    console.log('error getting contacts informations', error);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/worships', (req, res) => {
+  // GET route code here
+  let queryText = `Select * from "video" where "description" like '%orship%' order by "id" Desc;`;
+  pool.query(queryText).then(result => {
+    console.log("The videos are here ", result.rows);
+    // Sends back the results in an object
+    res.send(result.rows);
+  })
+  .catch(error => {
+    console.log('error getting contacts informations', error);
+    res.sendStatus(500);
+  });
+});
   /**
    * POST route template
    */
